@@ -9,6 +9,7 @@ def create_table():
                                                 first_name text NOT NULL,
                                                 last_name text NOT NULL
                                                 )""".format(table_name)
+    execute_query(query)
 
 
 def create_writer(writer, writer_id=None):

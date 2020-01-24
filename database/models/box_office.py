@@ -13,6 +13,7 @@ def create_table():
                                                 ON UPDATE CASCADE,
                                                 ON DELETE CASCADE
                                                 )""".format(table_name)
+    execute_query(query)
 
 
 def create_box_office(box_office, movie_id):

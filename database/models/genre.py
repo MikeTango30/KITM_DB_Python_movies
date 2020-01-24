@@ -8,6 +8,7 @@ def create_table():
                                                 genre_id integer PRIMARY KEY,
                                                 genre_name text NOT NULL
                                                 )""".format(table_name)
+    execute_query(query)
 
 
 def create_genre(genre):
