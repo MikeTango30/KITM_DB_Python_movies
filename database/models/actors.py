@@ -3,7 +3,7 @@ from database.database import execute_query
 table_name = "actors"
 
 
-def create_table():
+def create_actors_table():
     query = """CREATE TABLE IF NOT EXISTS {} (
                                                 actor_id integer PRIMARY KEY,
                                                 first_name text NOT NULL,

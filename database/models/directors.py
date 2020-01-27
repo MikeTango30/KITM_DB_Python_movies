@@ -3,7 +3,7 @@ from database.database import execute_query
 table_name = "directors"
 
 
-def create_table():
+def create_directors_table():
     query = """CREATE TABLE IF NOT EXISTS {} (
                                                 director_id integer PRIMARY KEY,
                                                 first_name text NOT NULL,
