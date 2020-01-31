@@ -14,3 +14,9 @@ def create_movies_writers_table():
                                                 ON DELETE CASCADE 
                                                 )""".format(table_name)
     execute_query(query)
+
+
+def create_relationship(movie_id, writer_id):
+    query = f"""INSERT INTO {table_name} (movie_id, writer_id) VALUES(?, ?)"""
+    params = (movie_id, writer_id)
+    execute_query(query, params, None, True)

@@ -14,3 +14,9 @@ def create_movies_genres_table():
                                                 ON DELETE CASCADE 
                                                 )""".format(table_name)
     execute_query(query)
+
+
+def create_relationship(movie_id, genre_id):
+    query = f"""INSERT INTO {table_name} (movie_id, genre_id) VALUES(?, ?)"""
+    params = (movie_id, genre_id)
+    execute_query(query, params, None, True)

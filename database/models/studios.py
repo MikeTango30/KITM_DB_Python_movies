@@ -17,7 +17,7 @@ def create_studios_table():
 
 def create_studio(studio, movie_id):
     query = "INSERT INTO {} VALUES(?, ?, ?)".format(table_name)
-    params = (studio.studio_id, movie_id, studio.title)
+    params = (studio.studio_id, movie_id, studio.studio_title)
     studio.studio_id = execute_query(query, params, None, True)
 
 

@@ -1,4 +1,4 @@
-movies_repo_json = {
+movies_repo = {
     "genres": [
         "Comedy",
         "Fantasy",
