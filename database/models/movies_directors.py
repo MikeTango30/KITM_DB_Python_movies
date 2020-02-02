@@ -4,7 +4,7 @@ table_name = "movies_directors"
 
 
 def create_movies_directors_table():
-    query = """CREATE TABLE IF NOT EXISTS {} (
+    query = f"""CREATE TABLE IF NOT EXISTS {table_name} (
                                                 movies_directors_id integer PRIMARY KEY,
                                                 movie_id integer,
                                                 director_id integer,
@@ -12,8 +12,7 @@ def create_movies_directors_table():
                                                 FOREIGN KEY(director_id) REFERENCES directors(director_id)
                                                 ON UPDATE CASCADE
                                                 ON DELETE CASCADE 
-                                                )""".format(table_name)
-    execute_query(query)
+                                                )"""
 
 
 def create_relationship(movie_id, director_id):

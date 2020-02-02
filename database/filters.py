@@ -15,41 +15,35 @@ writers = "writers"
 
 
 def get_all_data():
-    query = f"""SELECT (movies.title, release_year, runtime, actors.last_name, directors.last_name, writers.last_name, 
-                        genres.genre_name, studios.title, boxoffices.overall_sales) 
+    query = f"""SELECT movies.title, release_year, runtime, actors.last_name, 
+                        directors.last_name, writers.last_name, 
+                        genres.genre_name, studios.title, box_offices.overall_sales
                 FROM {movies}
                 JOIN {movies_actors}
-                USING (movie_id)
-                WHERE actor_id IN(
-                    SELECT actor_id
-                    FROM {actors} 
-                    JOIN {movies_actors} 
-                    USING (actor_id))
+                ON movies.movie_id = movies_actors.movie_id
+                JOIN {actors}
+                ON movies_actors.actor_id = actors.actor_id
+                
                 JOIN {movies_writers}
-                USING (movie_id)
-                WHERE writer_id IN(
-                    SELECT writer_id
-                    FROM {writers} 
-                    JOIN {movies_writers} 
-                    USING (writer_id)) 
+                ON movies.movie_id = movies_writers.movie_id
+                JOIN {writers}
+                ON movies_writers.writer_id = writers.writer_id
+
                 JOIN {movies_directors}
-                USING (movie_id)
-                WHERE director_id IN(
-                    SELECT director_id
-                    FROM {directors} 
-                    JOIN {movies_directors} 
-                    USING (director_id)) 
+                ON movies.movie_id = movies_directors.movie_id
+                JOIN {directors}
+                ON movies_directors.director_id = directors.director_id
+               
                 JOIN {movies_genres}
-                USING (movie_id) 
-                WHERE genre_id IN(
-                    SELECT genre_id
-                    FROM {genres} 
-                    JOIN {movies_genres} 
-                    USING (genre_id)) 
+                ON movies.movie_id = movies_genres.movie_id
+                JOIN {genres}
+                ON movies_genres.genre_id = genres.genre_id
+
                 JOIN {studios} 
-                USING (movie_id)
+                ON movies.movie_id = studios.studio_id
+                
                 JOIN {box_offices} 
-                USING (movie_id)
+                ON movies.movie_id = box_offices.box_office_id
                 GROUP BY movies.title
                 """
     return execute_query(query, None, True)

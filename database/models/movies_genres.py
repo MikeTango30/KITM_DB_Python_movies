@@ -4,7 +4,7 @@ table_name = "movies_genres"
 
 
 def create_movies_genres_table():
-    query = """CREATE TABLE IF NOT EXISTS {} (
+    query = f"""CREATE TABLE IF NOT EXISTS {table_name} (
                                                 movies_genres_id integer PRIMARY KEY,
                                                 movie_id integer,
                                                 genre_id integer,
@@ -12,7 +12,7 @@ def create_movies_genres_table():
                                                 FOREIGN KEY(genre_id) REFERENCES genres(genre_id)
                                                 ON UPDATE CASCADE
                                                 ON DELETE CASCADE 
-                                                )""".format(table_name)
+                                                )"""
     execute_query(query)
 
 

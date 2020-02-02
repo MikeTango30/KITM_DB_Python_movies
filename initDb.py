@@ -3,6 +3,7 @@ from database.filters import filter_by_actor
 from database.filters import filter_by_director
 from database.filters import filter_by_writer
 from database.filters import filter_by_genre
+from database.database import execute_query
 
 from database.models import actors
 from database.models import box_offices
@@ -32,31 +33,25 @@ from entities.movie import Movie
 from movies_repo import movies_repo
 
 
-# print(movies_repo["movies"][0]["title"])
-# for item in movies_repo["movies"]:
-#     for k, v in item.items():
-#         if k == "title" or k == "runtime" or k == "year":
-#             print(k + " " + v)
+actors.create_actors_table()
+box_offices.create_box_offices_table()
+directors.create_directors_table()
+genres.create_genres_table()
+movies.create_movies_table()
+movies_writers.create_movies_writers_table()
+movies_genres.create_movies_genres_table()
+movies_directors.create_movies_directors_table()
+movies_actors.create_movies_actors_table()
+studios.create_studios_table()
+writers.create_writers_table()
 
-# actors.create_actors_table()
-# box_offices.create_box_offices_table()
-# directors.create_directors_table()
-# genres.create_genres_table()
-# movies.create_movies_table()
-# movies_writers.create_movies_writers_table()
-# movies_genres.create_movies_genres_table()
-# movies_directors.create_movies_directors_table()
-# movies_actors.create_movies_actors_table()
-# studios.create_studios_table()
-# writers.create_writers_table()
-#
-#
+
 # fake = Faker()
 # fake.add_provider(python)
 # fake.add_provider(company)
-
+#
 # # fake actors, directors, writers
-# for i in range(500):
+# for i in range(200):
 #     actor = Actor(fake.first_name(), fake.last_name())
 #     actors.create_actor(actor)
 #     director = Director(fake.first_name(), fake.last_name())
@@ -74,22 +69,22 @@ from movies_repo import movies_repo
 # for i in movies_repo["genres"]:
 #     genre = Genre(i)
 #     genres.create_genre(genre)
-
+#
 # # fake box offices
 # for i in range(147):
 #     box_office = Box_office(fake.pyfloat(3, 2, True, 30, 150), fake.pyfloat(3, 2, True, 150, 700))
 #     box_offices.create_box_office(box_office, random.randrange(1, 147))
-
-# fake movies actors, directors, writers relationships
-# for i in range(500):
-#     movies_actors.create_relationship(random.randrange(1, 147), random.randrange(1, 501))
-#     movies_writers.create_relationship(random.randrange(1, 147), random.randrange(1, 501))
-#     movies_directors.create_relationship(random.randrange(1, 147), random.randrange(1, 501))
-
-# fake movies genre relationships
+#
+# # fake movies actors, directors, writers relationships
+# for i in range(200):
+#     movies_actors.create_relationship(random.randrange(1, 147), random.randrange(1, 201))
+#     movies_writers.create_relationship(random.randrange(1, 147), random.randrange(1, 201))
+#     movies_directors.create_relationship(random.randrange(1, 147), random.randrange(1, 201))
+#
+# # fake movies genre relationships
 # for i in range(147):
 #     movies_genres.create_relationship(random.randrange(1, 147), random.randrange(1, len(movies_repo["genres"])))
-
+#
 # titles = []
 # runtimes = []
 # years = []
@@ -107,6 +102,10 @@ from movies_repo import movies_repo
 #     movies.create_movie(movie)
 
 rows = get_all_data()
+# rows = filter_by_actor()
+# rows = filter_by_director()
+# rows = filter_by_genre()
+# rows = filter_by_writer()
+
 for row in rows:
     print(row)
-
